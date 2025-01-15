@@ -11,7 +11,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
   try {
     // Fetch post data from the API
     const res = await fetch(
-      `/api/posts/${slug}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/posts/${slug}`,
       {
         cache: "no-store", // Always fetch fresh data
       }
