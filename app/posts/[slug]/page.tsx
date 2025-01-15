@@ -1,4 +1,5 @@
 import React from "react";
+import { Post } from "@prisma/client";
 
 interface PostPageProps {
   params: { slug: string };
@@ -6,22 +7,21 @@ interface PostPageProps {
 
 // Dynamic Route Page Component
 const PostPage: React.FC<PostPageProps> = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
 
   try {
-    // Fetch post data from the API
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/posts/${slug}`,
-      {
-        cache: "no-store", // Always fetch fresh data
+    const res = await fetch(`${process.env.API_URL}/api/posts/${slug}`, {
+      cache: "no-store",
+      next: {
+        revalidate: 0
       }
-    );
+    });
 
     if (!res.ok) {
-      return <div className="text-center">Post not found!</div>;
+      throw new Error(`Failed to fetch post: ${res.status}`);
     }
 
-    const post = await res.json();
+    const post: Post = await res.json();
 
     return (
       <div className="max-w-3xl mx-auto p-6">

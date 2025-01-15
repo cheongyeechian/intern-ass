@@ -2,29 +2,28 @@ import { db } from "@/utils/connect";
 import { NextResponse } from "next/server";
 
 // GET A SINGLE POST
- const GET = async (req: Request, {params}:{params:{slug:string}})=> {
-   const { slug } = params; // Extract slug from URL params
+export async function GET (req: Request, { params }: { params: { slug: string } }):Promise<NextResponse> {
+  const { slug } = params; // Extract slug from URL params
 
-   try {
-     const post = await db.post.findUnique({
-       where: { slug }, // Fetch the post by slug
-     });
+  console.log(`Fetching post with slug: ${slug}`);
 
-     console.log(post);
+  try {
+    const post = await db.post.findUnique({
+      where: {slug}, 
+    });
 
-     if (!post) {
-       return new NextResponse(JSON.stringify({ message: "Post not found!" }), {
-         status: 404,
-       });
-     }
-     return new NextResponse(JSON.stringify(post), { status: 200 });
-   } catch (err) {
-     console.error(err);
-     return new NextResponse(
-       JSON.stringify({ message: "Something went wrong!" }),
-       { status: 500 }
-     );
-   }
- };
+    if (!post) {
+      return new NextResponse(JSON.stringify({ message: "Post not found!" }), {status: 404,});
+    }
+    return new NextResponse(JSON.stringify(post), { status: 200 });
 
-export default GET;
+  } catch (err) {
+    console.error('Error fetching post:', err); 
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong!" }),
+      { status: 500 }
+    ); 
+  }
+};
+
+
