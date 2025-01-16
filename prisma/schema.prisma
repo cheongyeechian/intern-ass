@@ -95,5 +95,4 @@ model Post {
   content String
   userEmail String
   user User @relation(fields: [userEmail], references: [email])
-
 }

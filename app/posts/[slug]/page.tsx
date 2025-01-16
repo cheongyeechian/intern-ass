@@ -1,8 +1,13 @@
 import React from "react";
 import { Post } from "@prisma/client";
+import { User } from "@prisma/client";
 
 interface PostPageProps {
   params: { slug: string };
+}
+
+interface PostWithUser extends Post {
+  user: User;
 }
 
 // Dynamic Route Page Component
@@ -21,7 +26,8 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
       throw new Error(`Failed to fetch post: ${res.status}`);
     }
 
-    const post: Post = await res.json();
+    const post: PostWithUser = await res.json();
+
 
     return (
       <div className="max-w-3xl mx-auto p-6">
@@ -33,6 +39,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
             day: "numeric",
           })}
         </div>
+        <p className="text-gray-500">{post.user.name}</p>
         <p className="text-gray-700 leading-7">{post.content}</p>
       </div>
     );
