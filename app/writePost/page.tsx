@@ -50,14 +50,14 @@ const WritePost = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 shadow-md rounded-md">
-      <h1 className="text-2xl font-bold mb-4">Write a New Post</h1>
+    <div className="max-w-2xl mx-auto p-6 shadow-md rounded-md ">
+      <h1 className="text-2xl font-bold mb-4 text-white">Write a New Post</h1>
       <form onSubmit={handleSubmit}>
         {/* Title input */}
         <div className="mb-4">
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-white"
           >
             Title
           </label>
@@ -66,7 +66,7 @@ const WritePost = () => {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 block w-full p-2 border rounded"
+            className="mt-1 block w-full p-2 border rounded "
             placeholder="Your Title"
             required
           />
@@ -76,7 +76,7 @@ const WritePost = () => {
         <div className="mb-4">
           <label
             htmlFor="content"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-white"
           >
             Content
           </label>
