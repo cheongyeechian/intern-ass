@@ -1,12 +1,12 @@
 import { Post } from "@prisma/client";
 import Link from "next/link";
+import { BackgroundGradient } from "../ui/background-gradient";
 
 const Card: React.FC<{ item: Post }> = ({ item }) => {
   return (
-    <div className="flex flex-col border border-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* Post Details */}
-      <div className="p-4 text-gray-700 bg-gray-50">
-        <h2 className="text-lg font-semibold text-gray-900 mb-2">
+    <div className="flex flex-col max-h-min rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow ">
+      <BackgroundGradient className="rounded-[22px] p-4  bg-black">
+        <h2 className="text-lg font-semibold text-white mb-2">
           {item.title || "Untitled Post"}
         </h2>
         <div className="text-sm text-gray-500">
@@ -16,17 +16,15 @@ const Card: React.FC<{ item: Post }> = ({ item }) => {
             day: "numeric",
           })}
         </div>
-        <p className="text-md text-gray-600">
+        <p className="text-sm text-white ">
           {item.content?.substring(0, 50) || "No description available."}
         </p>
-        <div className="mt-4">
-          <Link href={`/posts/${item.slug}`}>
-            <button className="px-4 py-2 text-sm font-medium text-white bg-yellow-600 rounded hover:bg-yellow-300">
-              Read More
-            </button>
-          </Link>
-        </div>
-      </div>
+        <Link href={`/posts/${item.slug}`}>
+          <button className="rounded-full px-2 py-1 text-black flex items-center space-x-1 bg-white mt-4 text-xs font-bold">
+            <span>Read More</span>
+          </button>
+        </Link>
+      </BackgroundGradient>
     </div>
   );
 };

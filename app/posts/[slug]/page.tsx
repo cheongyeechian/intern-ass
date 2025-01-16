@@ -31,7 +31,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
 
     return (
       <div className="max-w-3xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+        <h1 className="text-3xl font-bold mb-4 text-white">{post.title}</h1>
         <div className="text-gray-500 mb-6">
           {new Date(post.createdAt).toLocaleDateString("en-US", {
             year: "numeric",
@@ -40,7 +40,7 @@ const PostPage: React.FC<PostPageProps> = async ({ params }) => {
           })}
         </div>
         <p className="text-gray-500">{post.user.name}</p>
-        <p className="text-gray-700 leading-7">{post.content}</p>
+        <p className="text-white leading-7 mt-5">{post.content}</p>
       </div>
     );
   } catch (error) {

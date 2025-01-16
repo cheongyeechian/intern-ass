@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react'
 const Navbar = () => {
   const {data: session, status} = useSession();
   return (
-    <div className="flex flex-row place-content-between bg-yellow-100 p-5">
+    <div className="flex flex-row place-content-between p-5 text-white shadow-md shadow-gray-700">
       <Link href="/">
         <div className="navbar ">
           <div className="btn btn-ghost text-xl">A Blog Page</div>
