@@ -16,7 +16,7 @@ const WritePost = () => {
   }
 
   if (status === "unauthenticated") {
-    router.push("/login");
+    router.push("/loginPage");
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
