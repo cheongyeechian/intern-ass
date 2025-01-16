@@ -1,12 +1,12 @@
 import { db } from "@/utils/connect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // GET A SINGLE POST
 export async function GET(
-  req: Request,
-  { params }: { params: { slug: string } }
+  req: NextRequest,
+  context: { params: { slug: string } }
 ): Promise<NextResponse> {
-  const { slug } = params; // Extract slug from URL params
+  const { slug } = context.params;
 
   console.log(`Fetching post with slug: ${slug}`);
 
@@ -25,7 +25,6 @@ export async function GET(
       JSON.stringify({ ...post, user: { ...post.user } }),
       { status: 200 }
     );
-
   } catch (err) {
     console.error("Error fetching post:", err);
     return new NextResponse(
@@ -33,5 +32,4 @@ export async function GET(
       { status: 500 }
     );
   }
-
 }
