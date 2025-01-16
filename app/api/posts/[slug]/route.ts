@@ -1,14 +1,14 @@
 import { db } from "@/utils/connect";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 // GET A SINGLE POST
 export async function GET(
-  req: NextRequest,
+  request: Request,
   context: { params: { slug: string } }
 ): Promise<NextResponse> {
-  const { slug } = context.params;
+  const { params } = await context;
+  const {slug} = params;
 
-  console.log(`Fetching post with slug: ${slug}`);
 
   try {
     const post = await db.post.findUnique({
@@ -17,18 +17,14 @@ export async function GET(
     });
 
     if (!post) {
-      return new NextResponse(JSON.stringify({ message: "Post not found!" }), {
-        status: 404,
-      });
+      return NextResponse.json({ message: "Post not found!" }, { status: 404 });
     }
-    return new NextResponse(
-      JSON.stringify({ ...post, user: { ...post.user } }),
-      { status: 200 }
-    );
+    
+    return NextResponse.json(post, { status: 200 });
   } catch (err) {
     console.error("Error fetching post:", err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong!" }),
+    return NextResponse.json(
+      { message: "Something went wrong!" },
       { status: 500 }
     );
   }
