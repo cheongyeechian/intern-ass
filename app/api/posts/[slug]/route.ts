@@ -25,6 +25,7 @@ export async function GET(
       JSON.stringify({ ...post, user: { ...post.user } }),
       { status: 200 }
     );
+
   } catch (err) {
     console.error("Error fetching post:", err);
     return new NextResponse(
@@ -32,4 +33,5 @@ export async function GET(
       { status: 500 }
     );
   }
+
 }

@@ -17,6 +17,7 @@ export const GET = async () => {
   }
 };
 
+
 // CREATE A NEW POST
 export const POST = async (req: NextRequest) => {
   try {
