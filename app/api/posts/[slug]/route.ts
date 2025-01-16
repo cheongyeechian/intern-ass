@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 // GET A SINGLE POST
 export async function GET(
   request: Request,
-  {params}: { params: { slug: string } }
+  { params } : { params: Promise<{ slug: string }> }
 ): Promise<NextResponse> {
   
   const {slug} = await params;

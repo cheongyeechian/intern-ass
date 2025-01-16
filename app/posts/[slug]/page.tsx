@@ -3,7 +3,7 @@ import { Post } from "@prisma/client";
 import { User } from "@prisma/client";
 
 interface PostPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 interface PostWithUser extends Post {

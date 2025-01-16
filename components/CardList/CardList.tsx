@@ -19,7 +19,8 @@ const CardList: React.FC = () => {
         }
         const data: Post[] = await res.json(); // Type the response
         setPosts(data);
-      } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
         console.error(err.message);
       } finally {
         setLoading(false);

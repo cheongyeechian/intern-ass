@@ -40,7 +40,8 @@ const WritePost = () => {
       } else {
         throw new Error("Failed to create a post");
       }
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
       console.error(err.message);
       alert("Something went wrong. Please try again.");
     } finally {
@@ -54,7 +55,10 @@ const WritePost = () => {
       <form onSubmit={handleSubmit}>
         {/* Title input */}
         <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="title"
+            className="block text-sm font-medium text-gray-700"
+          >
             Title
           </label>
           <input
@@ -70,7 +74,10 @@ const WritePost = () => {
 
         {/* Content input */}
         <div className="mb-4">
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="content"
+            className="block text-sm font-medium text-gray-700"
+          >
             Content
           </label>
           <textarea
