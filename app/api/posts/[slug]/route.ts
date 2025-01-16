@@ -4,11 +4,12 @@ import { NextResponse } from "next/server";
 // GET A SINGLE POST
 export async function GET(
   request: Request,
-  context: { params: { slug: string } }
+  {params}: { params: { slug: string } }
 ): Promise<NextResponse> {
-  const { params } = await context;
-  const {slug} = params;
+  
+  const {slug} = await params;
 
+  console.log(`Fetching post with slug: ${slug}`);
 
   try {
     const post = await db.post.findUnique({
