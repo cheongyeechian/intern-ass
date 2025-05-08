@@ -51,7 +51,7 @@ const WritePost = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 shadow-md rounded-md ">
-      <h1 className="text-2xl font-bold mb-4 text-white">Write a New Post</h1>
+      <h1 className="text-2xl font-bold mb-4 text-white">Write a New Postttttttt</h1>
       <form onSubmit={handleSubmit}>
         {/* Title input */}
         <div className="mb-4">
